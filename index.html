@@ -347,7 +347,7 @@ body::after {
   transform: translateX(-50%);
   display: flex;
   gap: 28px;
-  padding: 30px 44px;
+  padding: 10px 24px;
   border-radius: 80px;
   background: rgba(20, 20, 26, 0.55);
   backdrop-filter: blur(40px) saturate(220%);
@@ -740,4 +740,29 @@ function renderCart(){
     div.innerHTML = `
       <h3>${item.name}</h3>
       <p>${item.price.toLocaleString()}</p>
-      <div style="display:flex; align-items:c
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-top:12px; gap:12px; flex-wrap:wrap;">
+        <button onclick="removeCart(${i})" style="padding:8px 20px; border-radius:40px;">Hapus</button>
+        <div style="display:flex; gap:12px;">
+          <a href="https://id.shp.ee/wbYb2ej1" target="_blank" style="width:42px; height:42px; border-radius:50%; background:#FF6D00; display:flex; align-items:center; justify-content:center; transition:0.2s;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopee_logo.svg" alt="Shopee" style="width:20px; height:20px; filter:brightness(0) invert(1);">
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=62895611324747&text=Halo,%20saya%20berminat%20dengan%20produk%20${encodeURIComponent(item.name)}" target="_blank" style="width:42px; height:42px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:20px; height:20px;">
+          </a>
+        </div>
+      </div>
+    `;
+    cartDiv.appendChild(div);
+  });
+}
+function removeCart(i){
+  cart.splice(i,1);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+}
+
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
